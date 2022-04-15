@@ -32,3 +32,5 @@ func main() {
 	fmt.Println(ret)
 
 }
+
+// Idea: use two pointers technique. If they are different, return false. Otherwise, it's a palindrome

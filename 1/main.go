@@ -33,3 +33,5 @@ func main() {
 // then iterate second time while checking for complement. O(n)
 //
 // 3. one pass solution: implemented above.
+
+// Idea: interate through the array, see if you have encountered a complement in the previous nums.
