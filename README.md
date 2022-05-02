@@ -43,10 +43,8 @@ Else
     - Sort input for O(nlogn) time and O(1) space
 ```
 
-## Notes
+## References
 
-[This pdf] contains useful information for the built-in data structures in Java.
-
-[Ref] (https://github.com/seanprashad/leetcode-patterns)
+<https://github.com/seanprashad/leetcode-patterns>
 
 <https://github.com/PinkyJie/leetcode-patterns>
