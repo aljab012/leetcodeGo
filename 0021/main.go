@@ -5,7 +5,7 @@ type ListNode struct {
 	Next *ListNode
 }
 
-// recursive
+// idea: base case: if one of them if null, return the other. otherwise, compare the values. merge the later and next in a recursive call.
 func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
 	if list1 == nil {
 		return list2

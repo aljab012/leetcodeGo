@@ -6,6 +6,7 @@ import (
 
 // time: O(n)
 // space: O(n)
+// Idea: use stack. If you see a closing paren, then that should match the top of the stack.
 func isValid(s string) bool {
 
 	chars := []rune(s)
@@ -40,5 +41,3 @@ func main() {
 	fmt.Println(ret)
 
 }
-
-// Idea: use stack

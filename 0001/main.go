@@ -4,6 +4,7 @@ import "fmt"
 
 // time: O(n)
 // space: O (n)
+// Idea: interate through the array, see if you have encountered a complement in the previous nums.
 func twoSum(nums []int, target int) []int {
 	numMap := make(map[int]int)
 	for i, n := range nums {
@@ -26,12 +27,3 @@ func main() {
 	fmt.Println(ret)
 
 }
-
-// 1. brute force solution: double for loops. O(n2)
-//
-// 2. two pass solution: interate through the array and save num, index into a map.
-// then iterate second time while checking for complement. O(n)
-//
-// 3. one pass solution: implemented above.
-
-// Idea: interate through the array, see if you have encountered a complement in the previous nums.

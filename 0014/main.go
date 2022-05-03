@@ -4,6 +4,7 @@ import "fmt"
 
 // time: O(n*m)
 // space: O (n)
+// Idea: Take all chars from the first string. Compare that with other strings, if they are not equal or we are out of bound, return what we have.
 func longestCommonPrefix(strs []string) string {
 	ret := ""
 	if len(strs) == 0 {
@@ -29,5 +30,3 @@ func main() {
 	fmt.Println(ret)
 
 }
-
-// Idea: Take all chars from the first string. Compare that with other strings, if they are not equal or we are out of bound. return what we have.

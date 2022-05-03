@@ -1,3 +1,4 @@
+// idea: binary search
 func searchInsert(nums []int, target int) int {
 	p1 := 0
 	p2 := len(nums) - 1

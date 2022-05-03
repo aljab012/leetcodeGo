@@ -7,6 +7,7 @@ import (
 
 // time: O(n)
 // space: O(n)
+// Idea: use two pointers technique. If the two ends are different, return false. Otherwise, it's a palindrome
 func isPalindrome(x int) bool {
 
 	str := strconv.Itoa(x)
@@ -32,5 +33,3 @@ func main() {
 	fmt.Println(ret)
 
 }
-
-// Idea: use two pointers technique. If they are different, return false. Otherwise, it's a palindrome

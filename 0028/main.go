@@ -4,6 +4,7 @@ import (
 	"fmt"
 )
 
+// idea: loop from the begining, if you see needle ahead, return it.
 func strStr(haystack string, needle string) int {
 	if len(needle) == 0 {
 		return 0

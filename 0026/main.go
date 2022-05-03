@@ -2,6 +2,8 @@ package main
 
 import "fmt"
 
+// idea: Have pivot index that only moves with unique values from the begining. Iterate through the array,
+// if same as pivot index, skip. Otherwise, insert into a pivot and move the pivot index.
 func removeDuplicates(nums []int) int {
 	index := 0
 	for i := 1; i < len(nums); i++ {
