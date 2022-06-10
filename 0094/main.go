@@ -7,10 +7,7 @@ type TreeNode struct {
 }
 
 func inorderTraversal(root *TreeNode) []int {
-	var ret []int
-
-	ret = helper(root, ret)
-	return ret
+	return helper(root, nil)
 }
 
 func helper(root *TreeNode, arr []int) []int {
