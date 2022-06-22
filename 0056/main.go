@@ -1,6 +1,9 @@
 package main
 
-import "sort"
+import (
+	"fmt"
+	"sort"
+)
 
 func merge(intervals [][]int) [][]int {
 
@@ -25,4 +28,15 @@ func Max(x, y int) int {
 		return x
 	}
 	return y
+}
+
+func main() {
+	intervals := [][]int{
+		{1, 3},
+		{2, 6},
+		{8, 10},
+		{15, 18},
+	}
+	// expected: [[1 6] [8 10] [15 18]]
+	fmt.Println(merge(intervals))
 }
