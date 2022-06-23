@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 func longestPalindrome(s string) string {
 	res := ""
 	for i := range s {
@@ -25,4 +27,6 @@ func helper(l, r int, s string) string {
 
 func main() {
 
+	// expected: "bab"
+	fmt.Println(longestPalindrome("babad"))
 }

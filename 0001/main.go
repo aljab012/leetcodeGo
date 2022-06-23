@@ -24,6 +24,7 @@ func main() {
 
 	ret := twoSum(nums, target)
 
+	// expectd output: [0,1]
 	fmt.Println(ret)
 
 }

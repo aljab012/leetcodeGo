@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 func lengthOfLongestSubstring(s string) int {
 	set := [128]bool{}
 	length, max := 0, 0
@@ -22,5 +24,6 @@ func lengthOfLongestSubstring(s string) int {
 }
 
 func main() {
-	lengthOfLongestSubstring("pwwkew")
+	// Output: 3
+	fmt.Println(lengthOfLongestSubstring("pwwkew"))
 }
