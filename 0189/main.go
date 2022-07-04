@@ -2,16 +2,9 @@ package main
 
 func rotate(nums []int, k int) {
 	k = k % len(nums)
-	temp := nums
-	for i := 0; i < k; i++ {
-		temp = rotateOne(temp)
-	}
+	startK := len(nums) - k
+	temp := append(append([]int{}, nums[startK:]...), nums[:startK]...)
 	copy(nums, temp)
-}
-func rotateOne(nums []int) []int {
-	last := nums[len(nums)-1]
-	nums = append([]int{last}, nums[:len(nums)-1]...)
-	return nums
 }
 
 func main() {
