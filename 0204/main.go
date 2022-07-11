@@ -1,16 +1,21 @@
 package main
 
+// idea: use a map to build buttom up solution
 func countPrimes(n int) int {
 	ret := 0
 	if n <= 2 {
-		return ret
+		return 0
 	}
-	notPrime := make([]bool, n)
+	prime := make([]bool, n)
+	for i := range prime {
+		prime[i] = true
+	}
+	prime[2] = true
 	for i := 2; i < n; i++ {
-		if !notPrime[i] {
+		if prime[i] {
 			ret++
 			for j := i; j < n; j += i {
-				notPrime[j] = true
+				prime[j] = false
 			}
 		}
 	}
