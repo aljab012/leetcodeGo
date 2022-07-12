@@ -3,25 +3,18 @@ package main
 import "math"
 
 func maxProfit(prices []int) int {
-
+	maxProfit := 0
 	minPrice := math.MaxInt
-	var maxProfit int
 
 	for _, p := range prices {
-		minPrice = min(minPrice, p)
-		maxProfit = max(maxProfit, p-minPrice)
-
+		minPrice = min(p, minPrice)
+		profit := p - minPrice
+		if profit > maxProfit {
+			maxProfit = profit
+		}
 	}
 	return maxProfit
 }
-
-func max(x, y int) int {
-	if x > y {
-		return x
-	}
-	return y
-}
-
 func min(x, y int) int {
 	if x < y {
 		return x
