@@ -6,30 +6,22 @@ import (
 )
 
 func addBinary(a string, b string) string {
-	aPtr := len(a) - 1
-	bPtr := len(b) - 1
+	ret := ""
+	p1 := len(a) - 1
+	p2 := len(b) - 1
 
 	carry := 0
-	ret := ""
-	for aPtr >= 0 || bPtr >= 0 {
-		aVal := 0
-		if aPtr >= 0 {
-			aVal, _ = strconv.Atoi(string(a[aPtr]))
-			aPtr--
+	for p1 >= 0 || p2 >= 0 || carry != 0 {
+		if p1 >= 0 {
+			carry += int(a[p1] - '0')
 		}
-		bVal := 0
-		if bPtr >= 0 {
-			bVal, _ = strconv.Atoi(string(b[bPtr]))
-			bPtr--
+		if p2 >= 0 {
+			carry += int(b[p2] - '0')
 		}
-		carry += aVal + bVal
-		digit := carry % 2
-		carry = carry / 2
-		ret = strconv.Itoa(digit) + ret
-	}
-	if carry != 0 {
-
-		ret = strconv.Itoa(carry) + ret
+		ret = strconv.Itoa(carry%2) + ret
+		carry /= 2
+		p1--
+		p2--
 	}
 	return ret
 }
