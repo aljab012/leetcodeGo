@@ -2,25 +2,25 @@ package main
 
 import "fmt"
 
+// idea: sliding window technnique
 func lengthOfLongestSubstring(s string) int {
-	set := [128]bool{}
-	length, max := 0, 0
+	ret := ""
 
-	for start, end := 0, 0; end < len(s); end++ {
-		char := s[end]
+	set := make([]bool, 128)
 
-		for ; set[char]; start++ {
-			set[s[start]] = false
-			length--
+	left := 0
+	for right := 0; right < len(s); right++ {
+		for set[s[right]] {
+			set[s[left]] = false
+			left++
 		}
-
-		set[char] = true
-		length++
-		if length > max {
-			max = length
+		set[s[right]] = true
+		window := s[left : right+1]
+		if len(window) > len(ret) {
+			ret = window
 		}
 	}
-	return max
+	return len(ret)
 }
 
 func main() {
