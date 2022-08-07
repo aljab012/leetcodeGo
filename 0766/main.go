@@ -1,5 +1,6 @@
 package main
 
+// idea: for each cell, validate the upper left cell
 func isToeplitzMatrix(matrix [][]int) bool {
 	rows, cols := len(matrix), len(matrix[0])
 
