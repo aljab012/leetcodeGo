@@ -1,22 +1,22 @@
 package main
 
-func checkStraightLine(coordinates [][]int) bool {
-	if len(coordinates) < 2 {
+func checkStraightLine(coord [][]int) bool {
+	x, y := 0, 1
+
+	if len(coord) <= 1 {
 		return true
 	}
-	x1 := coordinates[0][0]
-	y1 := coordinates[0][1]
-	x2 := coordinates[1][0]
-	y2 := coordinates[1][1]
 
-	dx := x2 - x1
-	dy := y2 - y1
+	dx := coord[0][x] - coord[1][x]
+	dy := coord[0][y] - coord[1][y]
 
-	for i := 2; i < len(coordinates); i++ {
-
-		if dx*(coordinates[i][1]-y2) != dy*(coordinates[i][0]-x2) {
+	for i := 1; i < len(coord); i++ {
+		tdx := coord[i-1][x] - coord[i][x]
+		tdy := coord[i-1][y] - coord[i][y]
+		if dy*tdx != dx*tdy {
 			return false
 		}
+
 	}
 	return true
 }
