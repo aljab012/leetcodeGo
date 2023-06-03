@@ -1,13 +1,15 @@
+package main
+
 func gameOfLife(board [][]int) {
 	directions := [][]int{
-		[]int{-1, -1},
-		[]int{-1, 0},
-		[]int{-1, 1},
-		[]int{0, -1},
-		[]int{0, 1},
-		[]int{1, -1},
-		[]int{1, 0},
-		[]int{1, 1},
+		{-1, -1},
+		{-1, 0},
+		{-1, 1},
+		{0, -1},
+		{0, 1},
+		{1, -1},
+		{1, 0},
+		{1, 1},
 	}
 	for i := 0; i < len(board); i++ {
 		for j := 0; j < len(board[i]); j++ {

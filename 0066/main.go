@@ -1,4 +1,8 @@
-import ("fmt")
+package main
+
+import (
+	"fmt"
+)
 
 func plusOne(digits []int) []int {
 
@@ -15,7 +19,7 @@ func plusOne(digits []int) []int {
 
 }
 
-func main(){
-	arr := [9]
+func main() {
+	arr := []int{9}
 	fmt.Println(plusOne(arr))
 }

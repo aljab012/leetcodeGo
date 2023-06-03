@@ -1,3 +1,5 @@
+package main
+
 func topKFrequent(nums []int, k int) []int {
 	nToCount := map[int]int{}
 	countToN := map[int][]int{}

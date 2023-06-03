@@ -1,3 +1,5 @@
+package main
+
 func maxAreaOfIsland(grid [][]int) int {
 	maxArea := 0
 	for i := 0; i < len(grid); i++ {

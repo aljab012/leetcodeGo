@@ -19,3 +19,7 @@ func helper(root *Node, ret []int) []int {
 	}
 	return ret
 }
+
+func main() {
+
+}
