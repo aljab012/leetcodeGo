@@ -1,18 +1,24 @@
 package main
 
+// isAnagram checks if two strings are anagrams
+// Time Complexity: O(n)
+// Space Complexity: O(1)
 func isAnagram(s string, t string) bool {
-	arr := [128]int{}
+
+	letters := make([]int, 26)
 
 	for _, c := range s {
-		arr[c]++
+		letters[c-'a']++
 	}
 	for _, c := range t {
-		arr[c]--
+		letters[c-'a']--
 	}
-	for _, n := range arr {
-		if n != 0 {
+
+	for _, l := range letters {
+		if l != 0 {
 			return false
 		}
 	}
 	return true
+
 }
