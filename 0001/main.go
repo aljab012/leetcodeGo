@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 // time: O(n)
 // space: O (n)
 // Idea: interate through the array, see if you have encountered a complement in the previous nums.
@@ -16,15 +14,4 @@ func twoSum(nums []int, target int) []int {
 		numMap[n] = i
 	}
 	return []int{-1, -1}
-}
-
-func main() {
-	nums := []int{2, 7, 11, 15}
-	target := 9
-
-	ret := twoSum(nums, target)
-
-	// expectd output: [0,1]
-	fmt.Println(ret)
-
 }
