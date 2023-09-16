@@ -15,6 +15,3 @@ func productExceptSelf(nums []int) []int {
 	}
 	return ret
 }
-func main() {
-
-}
