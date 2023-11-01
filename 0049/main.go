@@ -1,26 +1,18 @@
 package main
 
-import (
-	"sort"
-	"strings"
-)
-
 func groupAnagrams(strs []string) [][]string {
-	ret := [][]string{}
-	wMap := make(map[string][]string)
-
-	for _, word := range strs {
-		sWord := SortString(word)
-		wMap[sWord] = append(wMap[sWord], word)
+	groupMap := map[[26]int][]string{}
+	for _, s := range strs {
+		arr := [26]int{}
+		for _, c := range s {
+			arr[c-'a']++
+		}
+		groupMap[arr] = append(groupMap[arr], s)
 	}
-	for _, val := range wMap {
-		ret = append(ret, val)
+
+	ret := [][]string{}
+	for _, v := range groupMap {
+		ret = append(ret, v)
 	}
 	return ret
-}
-
-func SortString(s string) string {
-	arr := strings.Split(s, "")
-	sort.Strings(arr)
-	return strings.Join(arr, "")
 }
