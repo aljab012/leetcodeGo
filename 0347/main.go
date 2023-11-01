@@ -1,24 +1,24 @@
 package main
 
 func topKFrequent(nums []int, k int) []int {
-	nToCount := map[int]int{}
-	countToN := map[int][]int{}
-
+	countMap := map[int]int{}
 	for _, n := range nums {
-		nToCount[n] += 1
+		countMap[n]++
 	}
-	for n, count := range nToCount {
-		countToN[count] = append(countToN[count], n)
+	freqMap := map[int][]int{}
+	for k, v := range countMap {
+		freqMap[v] = append(freqMap[v], k)
 	}
+
 	ret := []int{}
-
-	for count := len(nums); len(ret) != k; count-- {
-		for _, n := range countToN[count] {
+	maxFreq := len(nums)
+	for len(ret) < k && maxFreq > 0 {
+		for _, v := range freqMap[maxFreq] {
 			if len(ret) < k {
-				ret = append(ret, n)
-
+				ret = append(ret, v)
 			}
 		}
+		maxFreq--
 	}
 	return ret
 }
