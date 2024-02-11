@@ -171,3 +171,15 @@ His most important advise to people who are starting their career journey are:
  - Early in the career choose experience over money
 
 Always have big dreams and work towards them accordingly. People around you may not understand.
+
+### Resources
+https://github.com/jwasham/coding-interview-university
+https://github.com/ashishps1/awesome-system-design-resources
+https://github.com/ashishps1/awesome-low-level-design
+https://github.com/ashishps1/awesome-coding-projects
+https://github.com/ashishps1/awesome-leetcode-resources
+https://github.com/ashishps1/awesome-behavioral-interviews
+https://leetcode.com/discuss/study-guide/458695/Dynamic-Programming-Patterns
+https://leetcode.com/discuss/study-guide/1688903/Solved-all-two-pointers-problems-in-100-days
+https://leetcode.com/discuss/study-guide/786126/Python-Powerful-Ultimate-Binary-Search-Template.-Solved-many-problems
+https://leetcode.com/discuss/study-guide/655708/Graph-For-Beginners-Problems-or-Pattern-or-Sample-Solutions
