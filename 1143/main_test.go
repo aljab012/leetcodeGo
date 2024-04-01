@@ -1,6 +1,8 @@
 package main
 
-import "testing"
+import (
+	"testing"
+)
 
 func Test_longestCommonSubsequence1(t *testing.T) {
 	type args struct {

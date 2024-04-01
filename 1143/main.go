@@ -47,6 +47,29 @@ func longestCommonSubsequence2(text1 string, text2 string) int {
 	return fn(text1, text2)
 }
 
+/*
+ * Dynamic programming solution with tabulation
+ */
+func longestCommonSubsequence3(text1 string, text2 string) int {
+	rows := len(text1) + 1
+	cols := len(text2) + 1
+	memo := make([][]int, rows)
+	for i := range memo {
+		memo[i] = make([]int, cols)
+	}
+
+	for i := 1; i < rows; i++ {
+		for j := 1; j < cols; j++ {
+			if text1[i-1] == text2[j-1] {
+				memo[i][j] = 1 + memo[i-1][j-1]
+			} else {
+				memo[i][j] = max(memo[i][j-1], memo[i-1][j])
+			}
+		}
+	}
+	return memo[rows-1][cols-1]
+}
+
 func max(x, y int) int {
 	if x > y {
 		return x
