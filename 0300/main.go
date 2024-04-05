@@ -59,6 +59,35 @@ func lengthOfLIS2(nums []int) int {
 	return fn(0, math.MinInt)
 }
 
+/* Buttom-up approach with tabulation
+ * Time complexity: O(n^2)
+ * Space complexity: O(n)
+ * where n is the length of the input array
+ */
+
+func lengthOfLIS3(nums []int) int {
+	// dp[i] is the length of the longest increasing subsequence ending at index i
+	dp := make([]int, len(nums))
+	// base case
+	for i := range dp {
+		dp[i] = 1
+	}
+	// tabulation
+	for i := 0; i < len(nums); i++ {
+		for j := 0; j < i; j++ {
+			if nums[i] > nums[j] {
+				dp[i] = max(dp[i], dp[j]+1)
+			}
+		}
+	}
+	// find the maximum value in dp
+	ret := 0
+	for i := range dp {
+		ret = max(ret, dp[i])
+	}
+	return ret
+}
+
 func max(x, y int) int {
 	if x > y {
 		return x
