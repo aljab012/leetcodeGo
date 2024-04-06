@@ -1,18 +1,33 @@
 package main
 
-// containsDuplicate checks if the given slice of integers contains duplicates.
-// It returns true if it does, false otherwise.
-// It uses a map to keep track of the numbers it has seen.
-// Time complexity: O(n)
-// Space complexity: O(n)
-func containsDuplicate(nums []int) bool {
-	nMap := make(map[int]bool)
+/*
+ * using a map to store the number and check if the number is already in the map
+ * Space complexity: O(n)
+ * Time complexity: O(n)
+ */
+func containsDuplicate1(nums []int) bool {
+	set := map[int]bool{}
 	for _, n := range nums {
-		_, found := nMap[n]
-		if found {
+		if _, ok := set[n]; ok {
 			return true
 		}
-		nMap[n] = true
+		set[n] = true
+	}
+	return false
+}
+
+/*
+ * Brute force solution with two loops
+ * Space complexity: O(1)
+ * Time complexity: O(n^2)
+ */
+func containsDuplicate2(nums []int) bool {
+	for i := 0; i < len(nums); i++ {
+		for j := i + 1; j < len(nums); j++ {
+			if nums[i] == nums[j] {
+				return true
+			}
+		}
 	}
 	return false
 }
