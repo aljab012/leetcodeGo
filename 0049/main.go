@@ -1,5 +1,10 @@
 package main
 
+/*
+ * using a map to store the number and check if the number is already in the map
+ * Space complexity: O(n)
+ * Time complexity: O(n)
+ */
 func groupAnagrams(strs []string) [][]string {
 	groupMap := map[[26]int][]string{}
 	for _, s := range strs {
