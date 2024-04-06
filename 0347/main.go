@@ -1,24 +1,26 @@
 package main
 
+/*
+ * using a map to store the number and check if the number is already in the map
+ *  * Space complexity: O(n)
+ *  * Time complexity: O(n)
+ */
 func topKFrequent(nums []int, k int) []int {
-	countMap := map[int]int{}
+	nToFreq := map[int]int{}
 	for _, n := range nums {
-		countMap[n]++
+		nToFreq[n]++
 	}
-	freqMap := map[int][]int{}
-	for k, v := range countMap {
-		freqMap[v] = append(freqMap[v], k)
+	freqToN := map[int][]int{}
+	for n, freq := range nToFreq {
+		freqToN[freq] = append(freqToN[freq], n)
 	}
-
 	ret := []int{}
-	maxFreq := len(nums)
-	for len(ret) < k && maxFreq > 0 {
-		for _, v := range freqMap[maxFreq] {
+	for i := len(nums); i >= 0; i-- {
+		for _, n := range freqToN[i] {
 			if len(ret) < k {
-				ret = append(ret, v)
+				ret = append(ret, n)
 			}
 		}
-		maxFreq--
 	}
 	return ret
 }
