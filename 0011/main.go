@@ -1,31 +1,28 @@
 package main
 
 func maxArea(height []int) int {
+	ret := 0
 
-	res := 0
-	left, right := 0, len(height)-1
-	for left < right {
-		area := (right - left) * Min(height[left], height[right])
-		res = Max(res, area)
-
-		if height[left] < height[right] {
-			left++
+	l, r := 0, len(height)-1
+	for l < r {
+		area := min(height[l], height[r]) * (r - l)
+		ret = max(ret, area)
+		if height[l] < height[r] {
+			l++
 		} else {
-			right--
+			r--
 		}
 	}
-	return res
+	return ret
 }
-
-func Min(x, y int) int {
-	if x < y {
+func max(x, y int) int {
+	if x > y {
 		return x
 	}
 	return y
 }
-
-func Max(x, y int) int {
-	if x > y {
+func min(x, y int) int {
+	if x < y {
 		return x
 	}
 	return y
