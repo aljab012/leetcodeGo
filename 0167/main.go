@@ -1,5 +1,10 @@
 package main
 
+/*
+ * Use two pointers technique
+ * Time complexity: O(n)
+ * Space complexity: O(1)
+ */
 func twoSum(numbers []int, target int) []int {
 	left, right := 0, len(numbers)-1
 
