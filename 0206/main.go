@@ -5,6 +5,15 @@ type ListNode struct {
 	Next *ListNode
 }
 
+/*
+ * Using two poniters to solve this problem interatively
+ * Save the next node in a variable
+ * Reverse the current node
+ * Move to the next node
+ * Time complexity: O(n)
+ * Space complexity: O(1)
+ */
+
 func reverseList(head *ListNode) *ListNode {
 
 	var prev, cur *ListNode = nil, head
