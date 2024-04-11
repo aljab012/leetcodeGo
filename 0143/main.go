@@ -5,6 +5,13 @@ type ListNode struct {
 	Next *ListNode
 }
 
+/*
+ * 1. Find the middle of the list
+ * 2. Reverse the second half
+ * 3. Merge the two halves
+ * Time Complexity: O(n)
+ * Space Complexity: O(1)
+ */
 func reorderList(head *ListNode) {
 	if head == nil || head.Next == nil {
 		return
