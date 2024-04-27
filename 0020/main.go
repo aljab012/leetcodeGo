@@ -1,9 +1,5 @@
 package main
 
-import (
-	"fmt"
-)
-
 // time: O(n)
 // space: O(n)
 // Idea: use stack. If you see a closing paren, then that should match the top of the stack.
@@ -35,9 +31,4 @@ func isValid(s string) bool {
 
 	}
 	return len(stack) == 0
-}
-func main() {
-	ret := isValid("({}){}")
-	fmt.Println(ret)
-
 }
