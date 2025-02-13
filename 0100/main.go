@@ -7,17 +7,12 @@ type TreeNode struct {
 }
 
 func isSameTree(p *TreeNode, q *TreeNode) bool {
-	return helper(p, q)
-}
-func helper(p *TreeNode, q *TreeNode) bool {
 	if p == nil && q == nil {
 		return true
 	}
-	if p != nil && q == nil {
+	if p == nil || q == nil {
 		return false
 	}
-	if p == nil && q != nil {
-		return false
-	}
-	return p.Val == q.Val && helper(p.Left, q.Left) && helper(p.Right, q.Right)
+
+	return p.Val == q.Val && isSameTree(p.Left, q.Left) && isSameTree(p.Right, q.Right)
 }
