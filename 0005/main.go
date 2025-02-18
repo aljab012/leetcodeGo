@@ -1,31 +1,28 @@
 package main
 
-/*
- * Optimal solution
- * Time complexity: O(n^2)
- * Space complexity: O(1)
- * Intuition: For each character in the string, we can expand outwards from that character to find all palindromic substrings.
- * Two cases:
- * 1. Odd length palindromes: Expand outwards from the current character to the left and right until the characters are not equal.
- * 2. Even length palindromes: Expand outwards from the current character and the next character to the left and right until the characters are not equal.
- */
 func longestPalindrome(s string) string {
+	if len(s) <= 1 {
+		return s
+	}
+	// for each index
+	// check using two pointers in two direction
 	ret := ""
-	var fn func(l, r int)
-	fn = func(l, r int) {
-		for l <= r && l >= 0 && r < len(s) && s[l] == s[r] {
-			if len(s[l:r+1]) > len(ret) {
-				ret = s[l : r+1]
+	var fn func(i, j int)
+	fn = func(i, j int) {
+		for i >= 0 && j < len(s) {
+			if s[i] != s[j] {
+				break
 			}
-			l--
-			r++
-
+			if len(s[i:j+1]) > len(ret) {
+				ret = s[i : j+1]
+			}
+			i--
+			j++
 		}
 	}
-	for i := range s {
+	for i := 0; i < len(s); i++ {
 		fn(i, i)
 		fn(i, i+1)
 	}
-
 	return ret
 }
