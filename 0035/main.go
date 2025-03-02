@@ -1,20 +1,30 @@
 package main
 
-// idea: binary search
 func searchInsert(nums []int, target int) int {
-	p1 := 0
-	p2 := len(nums) - 1
+	isBefore := func(i int) bool {
+		return nums[i] <= target
+	}
 
-	for p1 <= p2 {
-		mid := p1 + (p2-p1)/2
+	left, right := 0, len(nums)-1
+	// handle edge cases
+	if target < nums[left] {
+		return 0
+	}
+	if target > nums[right] {
+		return right + 1
+	}
 
-		if nums[mid] == target {
-			return mid
-		} else if nums[mid] < target {
-			p1 = mid + 1
+	for (right - left) > 1 {
+		mid := (left + right) / 2
+		if isBefore(mid) {
+			left = mid
 		} else {
-			p2 = mid - 1
+			right = mid
 		}
 	}
-	return p1
+
+	if nums[left] < target {
+		return left + 1
+	}
+	return left
 }
