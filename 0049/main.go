@@ -1,22 +1,45 @@
 package main
 
-/*
- * using a map to store the number and check if the number is already in the map
- * Space complexity: O(n)
- * Time complexity: O(n)
- */
-func groupAnagrams(strs []string) [][]string {
-	groupMap := map[[26]int][]string{}
-	for _, s := range strs {
-		arr := [26]int{}
-		for _, c := range s {
-			arr[c-'a']++
-		}
-		groupMap[arr] = append(groupMap[arr], s)
+import "sort"
+
+// with sorting
+func groupAnagrams1(strs []string) [][]string {
+	freqMap := map[string][]string{}
+
+	for _, str := range strs {
+		sorted := sortString(str)
+		freqMap[sorted] = append(freqMap[sorted], str)
 	}
 
 	ret := [][]string{}
-	for _, v := range groupMap {
+	for _, v := range freqMap {
+		ret = append(ret, v)
+	}
+	return ret
+}
+
+func sortString(s string) string {
+	runes := []rune(s)
+	sort.Slice(runes, func(i, j int) bool {
+		return runes[i] < runes[j]
+	})
+	return string(runes)
+}
+
+// with frequency array
+func groupAnagrams2(strs []string) [][]string {
+	freqMap := map[[26]int][]string{}
+
+	for _, str := range strs {
+		chatCount := [26]int{}
+		for _, c := range str {
+			chatCount[c-'a']++
+		}
+		freqMap[chatCount] = append(freqMap[chatCount], str)
+	}
+
+	ret := [][]string{}
+	for _, v := range freqMap {
 		ret = append(ret, v)
 	}
 	return ret
