@@ -126,8 +126,8 @@ func Test_addTwoNumbers(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := addTwoNumbers(tt.args.l1, tt.args.l2); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("addTwoNumbers() = %v, want %v", got, tt.want)
+			if got := addTwoNumbers1(tt.args.l1, tt.args.l2); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("addTwoNumbers1() = %v, want %v", got, tt.want)
 			}
 		})
 	}

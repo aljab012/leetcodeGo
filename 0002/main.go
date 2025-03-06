@@ -11,7 +11,7 @@ type ListNode struct {
  * Time complexity: O(max(m, n)) where m and n are the lengths of the two input lists.
  * Space complexity: O(max(m, n)) where m and n are the lengths of the two input lists.
  */
-func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
+func addTwoNumbers1(l1 *ListNode, l2 *ListNode) *ListNode {
 	dummy := &ListNode{}
 	cur := dummy
 	carry := 0
@@ -36,8 +36,8 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	return dummy.Next
 }
 
-/*
-func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
+// simpler version
+func addTwoNumbers2(l1 *ListNode, l2 *ListNode) *ListNode {
 
 	dummy := new(ListNode)
 	carry := 0
@@ -59,4 +59,3 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	return dummy.Next
 
 }
-*/

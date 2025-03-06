@@ -6,21 +6,21 @@ package main
  *  * Time complexity: O(n)
  */
 func topKFrequent(nums []int, k int) []int {
-	nToFreq := map[int]int{}
+	freqMap := map[int]int{}
 	for _, n := range nums {
-		nToFreq[n]++
+		freqMap[n]++
 	}
-	freqToN := map[int][]int{}
-	for n, freq := range nToFreq {
-		freqToN[freq] = append(freqToN[freq], n)
-	}
+
 	ret := []int{}
-	for i := len(nums); i >= 0; i-- {
-		for _, n := range freqToN[i] {
-			if len(ret) < k {
+	maxK := len(nums)
+	for len(ret) < k {
+		for n, freq := range freqMap {
+			if freq == maxK {
 				ret = append(ret, n)
 			}
 		}
+		maxK--
 	}
+
 	return ret
 }
