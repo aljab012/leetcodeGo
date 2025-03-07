@@ -15,14 +15,14 @@ func Test_productExceptSelf(t *testing.T) {
 		want []int
 	}{
 		{
-				name: "test1",
-				args: args{nums: []int{1, 2, 3, 4}},
-				want: []int{24, 12, 8, 6},
+			name: "Example 1",
+			args: args{nums: []int{1, 2, 3, 4}},
+			want: []int{24, 12, 8, 6},
 		},
 		{
-				name: "test2",
-				args: args{nums: []int{-1, 1, 0, -3, 3}},
-				want: []int{0, 0, 9, 0, 0},
+			name: "Example 2",
+			args: args{nums: []int{-1, 1, 0, -3, 3}},
+			want: []int{0, 0, 9, 0, 0},
 		},
 	}
 	for _, tt := range tests {

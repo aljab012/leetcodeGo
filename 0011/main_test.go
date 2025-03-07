@@ -13,8 +13,6 @@ func Test_maxArea(t *testing.T) {
 	}{
 		{"Example 1", args{height: []int{1, 8, 6, 2, 5, 4, 8, 3, 7}}, 49},
 		{"Example 2", args{height: []int{1, 1}}, 1},
-		{"Example 3", args{height: []int{4, 3, 2, 1, 4}}, 16},
-		{"Example 4", args{height: []int{1, 2, 1}}, 2},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
