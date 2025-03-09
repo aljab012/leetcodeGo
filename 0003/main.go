@@ -1,29 +1,26 @@
 package main
 
-import "fmt"
-
-// idea: sliding window technnique
 func lengthOfLongestSubstring(s string) int {
-	ret := ""
+	curBest := 0
+	set := map[byte]bool{}
 
-	set := make([]bool, 128)
-
-	left := 0
-	for right := 0; right < len(s); right++ {
-		for set[s[right]] {
-			set[s[left]] = false
-			left++
-		}
-		set[s[right]] = true
-		window := s[left : right+1]
-		if len(window) > len(ret) {
-			ret = window
+	l, r := 0, 0
+	for r < len(s) {
+		if _, ok := set[s[r]]; !ok {
+			set[s[r]] = true
+			r++
+			curBest = max(curBest, r-l)
+		} else {
+			delete(set, s[l])
+			l++
 		}
 	}
-	return len(ret)
+	return curBest
 }
 
-func main() {
-	// Output: 3
-	fmt.Println(lengthOfLongestSubstring("pwwkew"))
+func max(x, y int) int {
+	if x > y {
+		return x
+	}
+	return y
 }
