@@ -1,36 +1,40 @@
 package main
 
 func intervalIntersection(firstList [][]int, secondList [][]int) [][]int {
-	ret := [][]int{}
+	const START, END = 0, 1
+	result := [][]int{}
+	p1, p2 := 0, 0
 
-	i, j := 0, 0
+	for p1 < len(firstList) && p2 < len(secondList) {
+		start1, end1 := firstList[p1][START], firstList[p1][END]
+		start2, end2 := secondList[p2][START], secondList[p2][END]
 
-	for i < len(firstList) && j < len(secondList) {
-		start := Max(firstList[i][0], secondList[j][0])
-		end := Min(firstList[i][1], secondList[j][1])
-
-		if start <= end {
-			ret = append(ret, []int{start, end})
-		}
-		if firstList[i][1] < secondList[j][1] {
-			i++
-		} else {
-			j++
+		if end1 < start2 {
+			p1++ // period1 is before period2
+		} else if end2 < start1 {
+			p2++ // period2 is before period1
+		} else { // they intersect, move the pointer of the period that ends first
+			result = append(result, []int{max(start1, start2), min(end1, end2)})
+			if end1 < end2 {
+				p1++
+			} else {
+				p2++
+			}
 		}
 	}
-	return ret
+	return result
 }
 
-func Min(x, y int) int {
-	if x < y {
-		return x
+func min(a, b int) int {
+	if a < b {
+		return a
 	}
-	return y
+	return b
 }
 
-func Max(x, y int) int {
-	if x > y {
-		return x
+func max(a, b int) int {
+	if a > b {
+		return a
 	}
-	return y
+	return b
 }
