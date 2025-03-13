@@ -7,19 +7,18 @@ type TreeNode struct {
 }
 
 func inorderTraversal(root *TreeNode) []int {
-	return helper(root, nil)
-}
+	ret := []int{}
 
-func helper(root *TreeNode, arr []int) []int {
-	if root == nil {
-		return arr
+	var dfs func(root *TreeNode)
+	dfs = func(root *TreeNode) {
+		if root == nil {
+			return
+		}
+		dfs(root.Left)
+		ret = append(ret, root.Val)
+		dfs(root.Right)
 	}
-	if root.Left != nil {
-		arr = helper(root.Left, arr)
-	}
-	arr = append(arr, root.Val)
-	if root.Right != nil {
-		arr = helper(root.Right, arr)
-	}
-	return arr
+
+	dfs(root)
+	return ret
 }
