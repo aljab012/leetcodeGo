@@ -6,16 +6,16 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
-func zigzagLevelOrder(root *TreeNode) [][]int {
-	ret := [][]int{}
+func rightSideView(root *TreeNode) []int {
+	ret := []int{}
 	if root == nil {
 		return ret
 	}
 
 	queue := []*TreeNode{root}
+
 	for len(queue) > 0 {
 		levelSize := len(queue)
-		levelValues := []int{}
 		for i := 0; i < levelSize; i++ {
 			pop := queue[0]
 			queue = queue[1:]
@@ -26,14 +26,10 @@ func zigzagLevelOrder(root *TreeNode) [][]int {
 			if pop.Right != nil {
 				queue = append(queue, pop.Right)
 			}
-			if len(ret)%2 == 0 {
-				levelValues = append(levelValues, pop.Val)
-			} else {
-				levelValues = append([]int{pop.Val}, levelValues...)
+			if i == levelSize-1 {
+				ret = append(ret, pop.Val)
 			}
 		}
-		ret = append(ret, levelValues)
 	}
-
 	return ret
 }

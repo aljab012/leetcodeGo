@@ -13,3 +13,15 @@ func removeDuplicates(nums []int) int {
 	}
 	return pivot + 1
 }
+
+// shorter
+func removeDuplicates2(nums []int) int {
+	pivot := 0
+	for i := 0; i < len(nums); i++ {
+		if nums[i] != nums[pivot] {
+			pivot++
+			nums[pivot] = nums[i]
+		}
+	}
+	return pivot + 1
+}
