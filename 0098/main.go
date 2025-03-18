@@ -9,16 +9,21 @@ type TreeNode struct {
 }
 
 func isValidBST(root *TreeNode) bool {
-	return helper(root, math.MinInt, math.MaxInt)
-}
+	minVale := math.MinInt64
+	isValid := true
 
-func helper(root *TreeNode, min int, max int) bool {
-	if root == nil {
-		return true
+	var visit func(node *TreeNode)
+	visit = func(node *TreeNode) {
+		if node == nil {
+			return
+		}
+		visit(node.Left)
+		if node.Val <= minVale {
+			isValid = false
+		}
+		minVale = node.Val
+		visit(node.Right)
 	}
-	if root.Val <= min || root.Val >= max {
-		return false
-	}
-	return helper(root.Left, min, root.Val) && helper(root.Right, root.Val, max)
-
+	visit(root)
+	return isValid
 }
