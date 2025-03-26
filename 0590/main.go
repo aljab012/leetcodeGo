@@ -6,16 +6,19 @@ type Node struct {
 }
 
 func postorder(root *Node) []int {
-	return helper(root, []int{})
-}
+	ret := []int{}
 
-func helper(root *Node, ret []int) []int {
-	if root == nil {
-		return ret
+	var visit func(node *Node)
+	visit = func(node *Node) {
+		if node == nil {
+			return
+		}
+		for _, child := range node.Children {
+			visit(child)
+		}
+		ret = append(ret, node.Val)
 	}
-	for i := range root.Children {
-		ret = helper(root.Children[i], ret)
-	}
-	ret = append(ret, root.Val)
+
+	visit(root)
 	return ret
 }
