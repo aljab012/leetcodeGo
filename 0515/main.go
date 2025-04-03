@@ -1,7 +1,5 @@
 package main
 
-import "math"
-
 type TreeNode struct {
 	Val   int
 	Left  *TreeNode
@@ -9,31 +7,33 @@ type TreeNode struct {
 }
 
 func largestValues(root *TreeNode) []int {
+	if root == nil {
+		return []int{}
+	}
+
 	ret := []int{}
 
-	if root == nil {
-		return ret
-	}
-	stack := []*TreeNode{root}
+	queue := []*TreeNode{root}
+	for len(queue) > 0 {
+		levelSize := len(queue)
+		levelMax := queue[0].Val
 
-	for len(stack) > 0 {
-		levelLen := len(stack)
-		max := math.MinInt
-		for i := 0; i < levelLen; i++ {
-			pop := stack[0]
-			stack = stack[1:]
-			if pop.Val > max {
-				max = pop.Val
+		for i := 0; i < levelSize; i++ {
+			pop := queue[0]
+			queue = queue[1:]
+
+			if pop.Val > levelMax {
+				levelMax = pop.Val
 			}
+
 			if pop.Left != nil {
-				stack = append(stack, pop.Left)
+				queue = append(queue, pop.Left)
 			}
 			if pop.Right != nil {
-				stack = append(stack, pop.Right)
+				queue = append(queue, pop.Right)
 			}
 		}
-		ret = append(ret, max)
+		ret = append(ret, levelMax)
 	}
-
 	return ret
 }
