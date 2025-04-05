@@ -12,10 +12,11 @@ func minimumTotal(triangle [][]int) int {
 		if r == rows-1 {
 			return triangle[r][c]
 		}
-		ret := triangle[r][c] + min(dfs(r+1, c), dfs(r+1, c+1))
-		memo[[2]int{r, c}] = ret
-		return ret
+		minPath := triangle[r][c] + min(dfs(r+1, c), dfs(r+1, c+1))
+		memo[[2]int{r, c}] = minPath
+		return minPath
 	}
+
 	return dfs(0, 0)
 }
 
