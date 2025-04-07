@@ -3,20 +3,27 @@ package main
 import "math"
 
 /*
+ * Toolbox: Dynamic Programming
+ */
+
+/*
  * Recursive top-down
  */
 func minPathSum1(grid [][]int) int {
 	rows := len(grid)
 	cols := len(grid[0])
-	var fn func(x, y int) int
-	fn = func(x, y int) int {
-		if x == rows || y == cols { // base case (out of bound)
-			return int(math.MaxInt32)
+
+	var fn func(r, c int) int
+	fn = func(r, c int) int {
+		// base cases
+		if r >= rows || c >= cols {
+			return math.MaxInt
 		}
-		if x == rows-1 && y == cols-1 { // base case (hit goal)
-			return grid[x][y]
+		if r == rows-1 && c == cols-1 {
+			return grid[r][c]
 		}
-		return grid[x][y] + min(fn(x+1, y), fn(x, y+1))
+		// recursive
+		return grid[r][c] + min(fn(r+1, c), fn(r, c+1))
 	}
 	return fn(0, 0)
 }
@@ -27,28 +34,27 @@ func minPathSum1(grid [][]int) int {
 func minPathSum2(grid [][]int) int {
 	rows := len(grid)
 	cols := len(grid[0])
-	type key struct {
-		x, y int
-	}
-	memo := map[key]int{}
-	var fn func(x, y int) int
-	fn = func(x, y int) int {
-		if x == rows || y == cols { // base case (out of bound)
-			return int(math.MaxInt32)
-		}
-		if x == rows-1 && y == cols-1 { // base case (hit goal)
-			return grid[x][y]
-		}
-		if val, ok := memo[key{x, y}]; ok {
+
+	memo := map[[2]int]int{}
+	var fn func(r, c int) int
+	fn = func(r, c int) int {
+		if val, ok := memo[[2]int{r, c}]; ok {
 			return val
 		}
-		ret := grid[x][y] + min(fn(x+1, y), fn(x, y+1))
-		memo[key{x, y}] = ret
+		// base cases
+		if r >= rows || c >= cols {
+			return math.MaxInt
+		}
+		if r == rows-1 && c == cols-1 {
+			return grid[r][c]
+		}
+		// recursive
+		ret := grid[r][c] + min(fn(r+1, c), fn(r, c+1))
+		memo[[2]int{r, c}] = ret
 		return ret
 	}
 	return fn(0, 0)
 }
-
 func min(x, y int) int {
 	if x < y {
 		return x
