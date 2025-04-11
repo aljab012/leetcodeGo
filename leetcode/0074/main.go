@@ -1,30 +1,26 @@
 package main
 
+/*
+ * Approach:
+ * ToolBox: Binary Search, Matrix
+ * 1. Treat the 2D matrix as a 1D array.
+ * 2. Use binary search to find the target.
+ * Time Complexity: O(log(m * n))
+ * Space Complexity: O(1)
+ */
 func searchMatrix(matrix [][]int, target int) bool {
-	l, r := 0, len(matrix)-1
-	for l <= r {
-		mid := l + (r-l)/2
-		if target < matrix[mid][0] {
-			r = mid - 1
-		} else if target > matrix[mid][len(matrix[mid])-1] {
-			l = mid + 1
-		} else {
-			return binarySearch(matrix[mid], target)
-		}
-	}
-	return false
-}
+	rows := len(matrix)
+	cols := len(matrix[0])
 
-func binarySearch(nums []int, target int) bool {
-	l, r := 0, len(nums)-1
+	l, r := 0, rows*cols-1
 	for l <= r {
-		mid := l + (r-l)/2
-		if target > nums[mid] {
-			l = mid + 1
-		} else if target < nums[mid] {
-			r = mid - 1
-		} else {
+		mid := (r + l) / 2
+		if target == matrix[mid/cols][mid%cols] {
 			return true
+		} else if target > matrix[mid/cols][mid%cols] {
+			l = mid + 1
+		} else {
+			r = mid - 1
 		}
 	}
 	return false
