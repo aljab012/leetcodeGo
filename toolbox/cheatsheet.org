@@ -1,3 +1,78 @@
+* Dynamic Programming
+** Top Down
+start by drawing the recursion tree
+#+BEGIN_SRC
+func dp(i int) int {
+    if i == 0 {
+        return 1
+    }
+    if i == 1 {
+        return 2
+    }
+    if i == 2 {
+        return 3
+    }
+    return dp(i-1) + dp(i-2) + dp(i-3)
+}
+#+END_SRC
+** Top Down with Memoization
+#+BEGIN_SRC
+memo := make(map[int]int)
+func dp(i int) int {
+    if i == 0 {
+        return 1
+    }
+    if i == 1 {
+        return 2
+    }
+    if i == 2 {
+        return 3
+    }
+    if val, ok := memo[i]; ok {
+        return val
+    }
+    memo[i] = dp(i-1) + dp(i-2) + dp(i-3)
+    return memo[i]
+}
+#+END_SRC
+
+** Bottom Up with Tabulation
+#+BEGIN_SRC go
+func dp(n int) int {
+    dp := make([]int, n+1)
+    dp[0] = 1
+    dp[1] = 2
+    dp[2] = 3
+    for i := 3; i <= n; i++ {
+        dp[i] = dp[i-1] + dp[i-2] + dp[i-3]
+    }
+    return dp[n]
+}
+#+END_SRC
+
+** Bottom Up with Space Optimization
+#+BEGIN_SRC
+func dp(n int) int {
+    if n == 0 {
+        return 1
+    }
+    if n == 1 {
+        return 2
+    }
+    if n == 2 {
+        return 3
+    }
+    prev1, prev2, prev3 := 1, 2, 3
+    for i := 3; i <= n; i++ {
+        curr := prev1 + prev2 + prev3
+        prev1, prev2, prev3 = prev2, prev3, curr
+    }
+    return prev3
+}
+#+END_SRC
+
+
+
 * Binary Search
 ** Algorithm
 #+BEGIN_SRC
@@ -14,6 +89,7 @@ for left <= right {
 }
 #+END_SRC
 
+
 * Matrix
 ** Treat it as a 1D array
 #+BEGIN_SRC
@@ -22,3 +98,12 @@ i = row * cols + col
 row = i / cols
 col = i % cols
 #+END_SRC
+
+
+* Golang syntax
+** Strings
+*** String to int
+#+BEGIN_SRC
+s := "123"
+i, _ := strconv.Atoi(s)
+#END_SRC

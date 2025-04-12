@@ -1,35 +1,9 @@
 package main
 
-import (
-	"fmt"
-	"strconv"
-)
-
-// time: O(n)
-// space: O(n)
-// Idea: use two pointers technique. If the two ends are different, return false. Otherwise, it's a palindrome
 func isPalindrome(x int) bool {
-
-	str := strconv.Itoa(x)
-
-	chars := []rune(str)
-
-	p1 := 0
-	p2 := len(chars) - 1
-
-	for p1 < p2 {
-		if chars[p1] != chars[p2] {
-			return false
-		}
-		p1 += 1
-		p2 -= 1
+	reversed := 0
+	for num := x; num > 0; num = num / 10 {
+		reversed = reversed*10 + num%10
 	}
-	return true
-
-}
-
-func main() {
-	ret := isPalindrome(121)
-	fmt.Println(ret)
-
+	return reversed == x
 }
