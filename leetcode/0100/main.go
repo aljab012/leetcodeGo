@@ -6,6 +6,12 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
+/*
+ * 1. If both trees are nil, they are the same.
+ * 2. If one tree is nil and the other is not, they are not the same.
+ * 3. If both trees are not nil, check if the values of the current nodes are
+ *    equal and check the left and right subtrees recursively.
+ */
 func isSameTree(p *TreeNode, q *TreeNode) bool {
 	if p == nil && q == nil {
 		return true
