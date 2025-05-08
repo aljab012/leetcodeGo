@@ -1,34 +1,35 @@
 package main
 
 func solve(board [][]byte) {
-	if len(board) == 0 || len(board[0]) == 0 {
-		return
-	}
-	for i := 0; i < len(board); i++ {
-		for j := 0; j < len(board[i]); j++ {
-			if i == 0 || j == 0 || i == len(board)-1 || j == len(board[i])-1 {
-				DFS(board, i, j)
-			}
-		}
-	}
-	for i := 0; i < len(board); i++ {
-		for j := 0; j < len(board[i]); j++ {
-			if board[i][j] == 'T' {
-				board[i][j] = 'O'
-			} else {
-				board[i][j] = 'X'
-			}
-		}
-	}
-}
+	rows := len(board)
+	cols := len(board[0])
 
-func DFS(board [][]byte, i, j int) {
-	if i < 0 || j < 0 || i >= len(board) || j >= len(board[i]) || board[i][j] != 'O' {
-		return
+	var dfs func(r, c int)
+	dfs = func(r, c int) {
+		if r < 0 || c < 0 || r >= rows || c >= cols || board[r][c] != 'O' {
+			return
+		}
+		board[r][c] = 'B'
+		dfs(r+1, c)
+		dfs(r, c+1)
+		dfs(r-1, c)
+		dfs(r, c-1)
 	}
-	board[i][j] = 'T'
-	DFS(board, i+1, j)
-	DFS(board, i-1, j)
-	DFS(board, i, j+1)
-	DFS(board, i, j-1)
+	for r := 0; r < rows; r++ {
+		for c := 0; c < cols; c++ {
+			if r == 0 || c == 0 || r == rows-1 || c == cols-1 && board[r][c] == 'O' {
+				dfs(r, c)
+			}
+		}
+	}
+
+	for r := 0; r < rows; r++ {
+		for c := 0; c < cols; c++ {
+			if board[r][c] == 'B' {
+				board[r][c] = 'O'
+			} else if board[r][c] == 'O' {
+				board[r][c] = 'X'
+			}
+		}
+	}
 }
