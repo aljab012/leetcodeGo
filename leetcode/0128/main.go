@@ -1,29 +1,39 @@
 package main
 
-// idea: use set to look up values in O(1)
 func longestConsecutive(nums []int) int {
-	set := make(map[int]bool)
-	max := 0
-	for _, n := range nums {
-		set[n] = true
+	if len(nums) == 0 {
+		return 0
 	}
-	for _, n := range nums {
-		if !set[n-1] {
-			seqLen := 1
-			next := n + 1
-			for set[next] {
-				seqLen++
-				next++
-			}
-			max = Max(max, seqLen)
+
+	numSet := make(map[int]bool)
+	for _, num := range nums {
+		numSet[num] = true
+	}
+
+	maxLength := 0
+
+	for num := range numSet {
+		// Skip if not the start of a sequence
+		if numSet[num-1] {
+			continue
 		}
+
+		// Count sequence length
+		currentLength := 1
+		for numSet[num+1] {
+			currentLength++
+			num++
+		}
+
+		maxLength = max(maxLength, currentLength)
 	}
-	return max
+
+	return maxLength
 }
 
-func Max(x, y int) int {
-	if x > y {
-		return x
+func max(a, b int) int {
+	if a > b {
+		return a
 	}
-	return y
+	return b
 }
