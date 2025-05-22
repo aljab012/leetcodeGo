@@ -1,31 +1,29 @@
 package main
 
-import (
-	"fmt"
-	"strconv"
-)
+import "strconv"
 
 func addBinary(a string, b string) string {
-	ret := ""
-	p1 := len(a) - 1
-	p2 := len(b) - 1
+	aPointer := len(a) - 1
+	bPointer := len(b) - 1
 
+	result := ""
 	carry := 0
-	for p1 >= 0 || p2 >= 0 || carry != 0 {
-		if p1 >= 0 {
-			carry += int(a[p1] - '0')
-		}
-		if p2 >= 0 {
-			carry += int(b[p2] - '0')
-		}
-		ret = strconv.Itoa(carry%2) + ret
-		carry /= 2
-		p1--
-		p2--
-	}
-	return ret
-}
+	for aPointer >= 0 || bPointer >= 0 || carry > 0 {
+		sum := carry
 
-func main() {
-	fmt.Println(addBinary("11", "1"))
+		if aPointer >= 0 {
+			sum += int(a[aPointer] - '0')
+			aPointer--
+		}
+
+		if bPointer >= 0 {
+			sum += int(b[bPointer] - '0')
+			bPointer--
+		}
+
+		result = strconv.Itoa(sum%2) + result
+		carry = sum / 2
+	}
+
+	return result
 }
